@@ -6,6 +6,19 @@ from testapp.serializers import UserLoginSerializer
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from django.contrib.auth.models import User
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import AllowAny,IsAuthenticated
+#from testapp.decorator import user_passes_test
+from django.contrib.auth.models import User
+
+def user_passes_test(old_fuction):
+    def new_function(request, *args, **kwargs):
+        try:
+            user_ = User.objects.get(id=1123)
+        except Exception as e:
+            return Response('ERROR: user was not exist',status=401)
+        return old_fuction(request, *args, **kwargs)
+    return new_function
 
 class UserLoginView(RetrieveAPIView):
 
@@ -29,7 +42,7 @@ class UserProfileView(RetrieveAPIView):
     
     permission_classes = (IsAuthenticated,)
     authentication_class = JSONWebTokenAuthentication
-    
+
     def get(self, request):
         #print(request.user.id)
         try:
@@ -53,3 +66,13 @@ class UserProfileView(RetrieveAPIView):
                 'error': str(e)
                 }
         return Response(response, status=status_code)
+
+
+# Function based views in django 
+
+@api_view(['GET'])
+@permission_classes((AllowAny,))
+@user_passes_test
+def StudentProfile(request):
+    if request.method == 'GET':
+        return Response(1)
