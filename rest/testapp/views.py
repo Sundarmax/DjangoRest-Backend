@@ -8,13 +8,14 @@ from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from django.contrib.auth.models import User
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny,IsAuthenticated
-#from testapp.decorator import user_passes_test
 from django.contrib.auth.models import User
-
+from testapp.models import Person,Group,Membership
+import datetime
 def user_passes_test(old_fuction):
     def new_function(request, *args, **kwargs):
         try:
-            user_ = User.objects.get(id=1123)
+            #user_ = User.objects.get(id=1123)
+            pass
         except Exception as e:
             return Response('ERROR: user was not exist',status=401)
         return old_fuction(request, *args, **kwargs)
@@ -76,3 +77,13 @@ class UserProfileView(RetrieveAPIView):
 def StudentProfile(request):
     if request.method == 'GET':
         return Response(1)
+
+# Adding a extra fields In MTM relationship table. 
+person_ = Person.objects.get(id =1)
+print(person_)
+group_ = Group.objects.get(id = 1)
+print(group_)
+person_in_group = group_.members.all()
+print(person_in_group)
+#m2 = Membership.objects.create(person=person_, group=group_,invite_reason="Wanted to form a band.")
+group_.members.clear()
