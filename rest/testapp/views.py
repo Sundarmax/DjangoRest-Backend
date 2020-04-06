@@ -11,6 +11,7 @@ from rest_framework.permissions import AllowAny,IsAuthenticated
 from django.contrib.auth.models import User
 from testapp.models import Person,Group,Membership
 import datetime
+
 def user_passes_test(old_fuction):
     def new_function(request, *args, **kwargs):
         try:
@@ -79,11 +80,11 @@ def StudentProfile(request):
         return Response(1)
 
 # Adding a extra fields In MTM relationship table. 
-person_ = Person.objects.get(id =1)
+""" person_ = Person.objects.get(id =1)
 print(person_)
 group_ = Group.objects.get(id = 1)
 print(group_)
 person_in_group = group_.members.all()
 print(person_in_group)
 #m2 = Membership.objects.create(person=person_, group=group_,invite_reason="Wanted to form a band.")
-group_.members.clear()
+group_.members.clear() """
