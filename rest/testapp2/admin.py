@@ -3,13 +3,11 @@ from testapp2.models import *
 from testapp.models import *
 from adminsortable2.admin import SortableAdminMixin,SortableInlineAdminMixin
 
-
 #Remove commented code and check the output in djagno admin page. 
 
 # @admin.register(create_super_book)
 # class MyModelAdmin(SortableAdminMixin, admin.ModelAdmin):
 #     pass
-
 
 # class MySubModelInline(SortableInlineAdminMixin, admin.TabularInline):  # or admin.StackedInline
 #     model = create_super_book # A model which is having FK relationship called submodel
@@ -30,5 +28,4 @@ admin.site.register(create_super_book)
 #admin.site.register(Button)
 #admin.site.register(Panel)
 #admin.site.register(PanelButtons)
-
 #admin.site.register(add_subject)

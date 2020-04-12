@@ -27,10 +27,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'adminsortable2',
     'testapp',
     'testapp2',
-    'adminsortable2'
+    'testapp3'
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
