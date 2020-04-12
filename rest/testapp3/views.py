@@ -42,5 +42,5 @@ def TestAggregation():
     MaxDeptEmp=Employee.objects.values('department__dept_name', 'level__level_name').annotate(employee_count = Count('id')).order_by('-employee_count')[:1]
     print(MaxDeptEmp)
     
-TestAggregation()
+#TestAggregation()
 

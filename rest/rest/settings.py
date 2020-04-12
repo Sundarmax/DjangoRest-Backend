@@ -30,9 +30,9 @@ INSTALLED_APPS = [
     'adminsortable2',
     'testapp',
     'testapp2',
-    'testapp3'
+    'testapp3',
+    'testapp4'
 ]
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
