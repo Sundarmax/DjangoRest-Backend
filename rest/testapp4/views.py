@@ -21,4 +21,4 @@ def CheckAtomicTransaction():
     except DatabaseError:
         print('Db error')
 
-CheckAtomicTransaction()
+#CheckAtomicTransaction()
