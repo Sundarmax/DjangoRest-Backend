@@ -28,11 +28,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'adminsortable2',
+    'django_filters',
     'testapp',
     'testapp2',
     'testapp3',
     'testapp4',
-    'testapp5'
+    'testapp5',
+    'testapp6'
 ]
 
 MIDDLEWARE = [
@@ -118,8 +120,9 @@ STATIC_URL = '/static/'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-        'rest_framework.permissions.IsAdminUser',
+        'rest_framework.permissions.AllowAny',
+        #'rest_framework.permissions.IsAuthenticated',
+        #'rest_framework.permissions.IsAdminUser',
         ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',

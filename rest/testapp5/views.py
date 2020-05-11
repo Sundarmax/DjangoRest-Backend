@@ -26,5 +26,5 @@ def check_2():
     input_list = [i*10 for i in input_list]
     print(input_list)
 
-Check()
-check_2()
+#Check()
+#check_2()
