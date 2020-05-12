@@ -17,6 +17,7 @@ class create_question(models.Model):
     question_mark               = models.IntegerField()
     importance                  = models.IntegerField()
     complexity                  = models.IntegerField()
+    created_at                  = models.DateField(auto_now_add=True)
     active                      = models.BooleanField(default=True,null=True,blank=True)
 
     def __str__(self):
