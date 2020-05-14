@@ -14,11 +14,12 @@ import datetime
 
 def user_passes_test(old_fuction):
     def new_function(request, *args, **kwargs):
-        try:
-            #user_ = User.objects.get(id=1123)
-            pass
-        except Exception as e:
-            return Response('ERROR: user was not exist',status=401)
+        if request.method == "GET":
+            return Response('ERROR: Get method not allowed',status=401)
+        # try:
+        #     user_ = User.objects.get(id=1123)
+        # except Exception as e:
+        #     return Response('ERROR: user was not exist',status=401)
         return old_fuction(request, *args, **kwargs)
     return new_function
 
@@ -72,12 +73,14 @@ class UserProfileView(RetrieveAPIView):
 
 # Function based views in django 
 
-@api_view(['GET'])
+@api_view(['GET','POST'])
 @permission_classes((AllowAny,))
 @user_passes_test
 def StudentProfile(request):
     if request.method == 'GET':
         return Response(1)
+    if request.method == 'POST':
+        return Response(2)
 
 # Adding a extra fields In MTM relationship table. 
 """ person_ = Person.objects.get(id =1)
