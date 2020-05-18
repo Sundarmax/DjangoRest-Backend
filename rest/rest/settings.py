@@ -34,7 +34,9 @@ INSTALLED_APPS = [
     'testapp3',
     'testapp4',
     'testapp5',
-    'testapp6'
+    'testapp6',
+    'addtag',
+    'taggit'
 ]
 
 MIDDLEWARE = [
