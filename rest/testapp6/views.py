@@ -2,7 +2,7 @@
 from rest_framework import generics
 
 from rest_framework.response import Response
-from .models import create_question
+from .models import create_question,create_question_history
 from .serializers import *
 
 #from django_filters import rest_framework as filters
@@ -22,6 +22,12 @@ from rest_framework.permissions import (
     DjangoModelPermissions,
     DjangoModelPermissionsOrAnonReadOnly
     )
+
+from datetime import datetime
+from django.utils import timezone
+
+#import datetime
+import pytz
 
 class CustomPagination(PageNumberPagination):
     
@@ -50,23 +56,79 @@ class QuestionsAPIView(generics.ListCreateAPIView):
     filter_backends = [DjangoFilterBackend]
     filterset_fields = {
             'importance' : ['exact', 'lte', 'gte'],
-            'created_at' : ['exact', 'lte', 'gte']
+            'created_at' : ['exact', 'lte', 'gte'],
+            'updated_at' : ['exact','date','lte','gte'],
     }
     queryset         =  create_question.objects.all()
     serializer_class = QuestionSerializer
     
 
     def get_queryset(self):
-        queryset        = create_question.objects.all().order_by("id")
+        queryset        = create_question.objects.filter().order_by("id")
         return queryset
     
-@api_view(['POST'])
+@api_view(['POST','PATCH'] )
 @permission_classes((AllowAny,))
 def add_new_question(request):
     if request.method == "POST":
         _payload = QuestionSerializer(data=request.data)
         if _payload.is_valid():
-
+            _payload.save()
             return Response({"isError": False}, status=status.HTTP_200_OK)
         else:
             return Response({"isError": True, "errors": _payload.errors}, status=status.HTTP_400_BAD_REQUEST)
+    if request.method == "PATCH":
+        data = create_question.objects.get(id = 19)
+        print(data.updated_at)
+        serializer = QuestionSerializer(data, data=request.data,partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data,status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+
+def CheckTimeZone():
+    time_zone = pytz.timezone('Asia/Kolkata')
+    data = create_question_history.objects.get(id=5)
+    print("Record UTC Time" ,data.submitted )
+    print("<--------------------------------->")
+    #print("current time is ", datetime.now())
+    print("UTC time is ", timezone.now())
+    diff = timezone.now().timestamp() - data.submitted.timestamp()
+    print(diff)
+    print("<--------------------------------->")
+
+def ConvertTimeZone():
+    time_zone = pytz.timezone('Asia/Kolkata')
+    # get naive date
+    #date = datetime.datetime.now().date()
+    # get naive time
+    #time = datetime.time(date.hour,date.minute)
+    # combite to datetime
+    #date_time = datetime.datetime.combine(date, time)
+    # make time zone aware
+    date_time = time_zone.localize(datetime.now())
+    # convert to UTC
+    utc_date_time = date_time.astimezone(pytz.utc)
+    # get time
+    utc_time = utc_date_time.time()
+    print(date_time)
+    print(utc_date_time)
+    print(utc_time)
+
+def addQuestion():
+    try:
+        add = create_question_history()
+        add.ques_type = "mcq"
+        add.importance = 2
+        add.created_at = timezone.now()
+        add.save()
+        print('Record saved')
+    except Exception as e:
+        print(e)
+
+#CheckTimeZone()
+#ConvertTimeZone()
+CheckTimeZone()
+
+#addQuestion()
