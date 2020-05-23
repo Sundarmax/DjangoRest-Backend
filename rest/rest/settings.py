@@ -20,6 +20,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -134,6 +135,15 @@ REST_FRAMEWORK = {
         )
 }
 
+""" TEMPLATES = [
+    {
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.request',
+            ],
+        },
+    },
+] """
 # Jwt Authentication
 # https://github.com/jpadilla/django-rest-framework-jwt/blob/master/rest_framework_jwt/settings.py
 JWT_AUTH = {
