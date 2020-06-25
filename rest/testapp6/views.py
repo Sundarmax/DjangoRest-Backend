@@ -74,7 +74,7 @@ def add_new_question(request):
         _payload = QuestionSerializer(data=request.data)
         if _payload.is_valid():
             _payload.save()
-            return Response({"isError": False}, status=status.HTTP_200_OK)
+            return Response({"isError": False}, status=status.HTTP_201_CREATED)
         else:
             return Response({"isError": True, "errors": _payload.errors}, status=status.HTTP_400_BAD_REQUEST)
     if request.method == "PATCH":

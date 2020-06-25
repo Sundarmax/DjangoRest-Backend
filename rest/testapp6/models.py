@@ -27,6 +27,27 @@ class create_question(models.Model):
     def __str__(self):
         return str(self.ques_type)
 
+class create_question_copy(models.Model):
+
+    L ='low'
+    H ='high'
+    M ='medium'
+
+    _TYPES=(
+        (L,'Low'),
+        (H,'High'),
+        (M,'Medium')
+    )
+
+    ques_type                   = models.CharField(max_length=100)
+    importance                  = models.IntegerField(default=0)
+    #current_version_id          = models.IntegerField(null=True,blank=True)
+    created_at                  = DateTimeUTCField(auto_now_add=True)
+    updated_at                  = DateTimeUTCField(auto_now=True)
+    active                      = models.BooleanField(default=True,null=True,blank=True)
+
+    def __str__(self):
+        return str(self.ques_type)
 
 class create_question_history(models.Model):
 
