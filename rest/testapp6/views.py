@@ -127,7 +127,15 @@ def addQuestion():
     except Exception as e:
         print(e)
 
-#CheckTimeZone()
-#ConvertTimeZone()
-#CheckTimeZone()
-#addQuestion()
+
+def CheckDynamicFilter():
+    searchDict = {}
+    #qs_type = request.query_params.get('ques_type', None)
+    qs_type = None
+    if qs_type:
+        searchDict["ques_type"] = qs_type
+    quesIns = create_question.objects.filter(**searchDict)    
+    print(quesIns)
+
+CheckDynamicFilter()
+
