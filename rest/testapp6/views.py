@@ -136,6 +136,4 @@ def CheckDynamicFilter():
         searchDict["ques_type"] = qs_type
     quesIns = create_question.objects.filter(**searchDict)    
     print(quesIns)
-
-CheckDynamicFilter()
-
+    
