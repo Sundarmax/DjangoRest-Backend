@@ -20,7 +20,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,6 +37,7 @@ INSTALLED_APPS = [
     'testapp6',
     'testapp7',
     'testapp8',
+    'testapp9',
     'addtag',
     'taggit'
 ]
@@ -78,11 +78,11 @@ WSGI_APPLICATION = 'rest.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'local_db',
+        'NAME': 'test_db',
         'USER': 'postgres',
-        'PASSWORD': 'admin',
+        'PASSWORD': 'ADMIN',
         'HOST': 'localhost',
-        'PORT': '4500',
+        'PORT': '5432',
     }
 }
 

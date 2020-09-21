@@ -43,8 +43,7 @@ Execute code after response sent to client
 def CustomerProfile(request):
     if request.method == 'GET':
         #testIns = LogSuccessResponse(instance=1)
-        response = LogSuccessResponse('Hello World')
-        response.testData = 
+        response = LogSuccessResponse('Hello World') 
         return response
     if request.method == 'POST':
         return Response(2)
