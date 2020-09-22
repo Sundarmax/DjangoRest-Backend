@@ -18,7 +18,7 @@ from django.shortcuts import render
 #     print(service.sid)
 
 # def SendVerificationToken():
-    
+
 #     verification = client.verify .services('VA97bb729fe157ecee4be496265bc9ee30') .verifications.create(to='', channel='sms')
 #     print(verification.status)
 
