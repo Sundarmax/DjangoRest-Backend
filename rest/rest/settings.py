@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'testapp7',
     'testapp8',
     'testapp9',
+    'testapp10',
     'addtag',
     'taggit'
 ]

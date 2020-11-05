@@ -1,17 +1,26 @@
-from django.shortcuts import render
+# from django.shortcuts import render
+# from zoomus import ZoomClient
+# import json
+# import hashlib
+# import hmac
+# import base64
+# import time
 
-# Create your views here.
-import json
-from zoomus import ZoomClient
+# def generateSignature(data):
+#     ts = int(round(time.time() * 1000)) - 30000
+#     msg = data['apiKey'] + str(data['meetingNumber']) + str(ts) + str(data['role'])    
+#     message = base64.b64encode(bytes(msg, 'utf-8'))
+#     # message = message.decode("utf-8")    
+#     secret = bytes(data['apiSecret'], 'utf-8')
+#     hash = hmac.new(secret, message, hashlib.sha256)
+#     hash =  base64.b64encode(hash.digest())
+#     hash = hash.decode("utf-8")
+#     tmpString = "%s.%s.%s.%s.%s" % (data['apiKey'], str(data['meetingNumber']), str(ts), str(data['role']), hash)
+#     signature = base64.b64encode(bytes(tmpString, "utf-8"))
+#     signature = signature.decode("utf-8")
+#     return signature.rstrip("=")
 
-
-def Test():
-    client = ZoomClient(API_KEY, API_SECRET)
-    user_list_response = client.user.list()
-    user_list = json.loads(user_list_response.content)
-    print(user_list)
-    #for user in user_list['users']:
-    #user_id = user['id']
-    #print(json.loads(client.meeting.list(user_id=user_id).content))
-
-Test()
+# #client = ZoomClient(API_KEY, API_SECRET) 
+# data = {'apiKey': "Qje31fqMRni2RvYPemocTw" ,'apiSecret': "RZHhtObDbcwmuz3xOKtG6mF0BAVqBbzaEZXV",'meetingNumber': 888,'role': 0}
+# result = generateSignature(data)
+# print(result)
