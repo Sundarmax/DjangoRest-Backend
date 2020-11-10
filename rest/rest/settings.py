@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'testapp8',
     'testapp9',
     'testapp10',
+    'zoho_test',
     'addtag',
     'taggit'
 ]

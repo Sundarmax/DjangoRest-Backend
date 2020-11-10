@@ -13,5 +13,6 @@ urlpatterns = [
     path('api/', include('testapp7.urls')),
     path('api/', include('testapp8.urls')),
     path('api/', include('testapp9.urls')),
-    path('api/', include('testapp10.urls'))
+    path('api/', include('testapp10.urls')),
+    path('api/', include('zoho_test.urls'))
 ]
